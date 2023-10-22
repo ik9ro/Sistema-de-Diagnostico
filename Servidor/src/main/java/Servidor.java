@@ -11,7 +11,6 @@ import java.util.Map;
 public class Servidor {
 
     private static ArrayList<Paciente> pacientes = new ArrayList<>();
-    private static HashMap<String, ArrayList<Paciente>> mapaDiagnostico = new HashMap<>();
 
     public static void main(String[] args) {
         try {
@@ -171,11 +170,6 @@ public class Servidor {
                     } else if (inputObject instanceof Paciente) {
                         Paciente patient = (Paciente) inputObject;
                         pacientes.add(patient);
-
-                        if (!mapaDiagnostico.containsKey(patient.getDiagnostico())) {
-                            mapaDiagnostico.put(patient.getDiagnostico(), new ArrayList<>());
-                        }
-                        mapaDiagnostico.get(patient.getDiagnostico()).add(patient);
 
                         oos.writeObject("Data received and stored successfully.");
                         oos.flush();
