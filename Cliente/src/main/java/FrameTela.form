@@ -48,50 +48,53 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelDiagnostico" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rS0" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rS5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnNovo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCasos" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rS1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rS6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldInforme" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <Component id="labelPesquisa" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rS2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rS7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rS3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rS8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rS9" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rS4" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnPesq" min="-2" pref="131" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="panelDiagnostico" alignment="0" min="-2" pref="766" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnNovo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnCasos" min="-2" max="-2" attributes="0"/>
+                          <Component id="panelDiagnostico" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelDiagnostico" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rS0" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rS5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rS1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rS6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rS2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rS7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rS3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rS8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rS9" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rS4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="fieldInforme" min="-2" pref="230" max="-2" attributes="0"/>
-                                      <Component id="labelPesquisa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnPesq" min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
