@@ -37,7 +37,7 @@ public class FrameTela extends javax.swing.JFrame {
         labelDiagnostico = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnCasos = new javax.swing.JButton();
-        btnApriori = new javax.swing.JButton();
+        btnWisard = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnPesq = new javax.swing.JButton();
         fieldInforme = new javax.swing.JTextField();
@@ -115,13 +115,13 @@ public class FrameTela extends javax.swing.JFrame {
             }
         });
 
-        btnApriori.setBackground(new java.awt.Color(61, 117, 229));
-        btnApriori.setForeground(new java.awt.Color(255, 255, 255));
-        btnApriori.setText("DIAGNOSTICO APRIORI");
-        btnApriori.setBorderPainted(false);
-        btnApriori.addActionListener(new java.awt.event.ActionListener() {
+        btnWisard.setBackground(new java.awt.Color(61, 117, 229));
+        btnWisard.setForeground(new java.awt.Color(255, 255, 255));
+        btnWisard.setText("DIAGNOSTICO WISARD");
+        btnWisard.setBorderPainted(false);
+        btnWisard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAprioriActionPerformed(evt);
+                btnWisardActionPerformed(evt);
             }
         });
 
@@ -198,7 +198,7 @@ public class FrameTela extends javax.swing.JFrame {
                                     .addComponent(rS9)
                                     .addComponent(rS4)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnApriori)
+                                .addComponent(btnWisard)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(panelDiagnostico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
@@ -244,7 +244,7 @@ public class FrameTela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGerar)
                     .addComponent(btnLimpar)
-                    .addComponent(btnApriori))
+                    .addComponent(btnWisard))
                 .addGap(20, 20, 20)
                 .addComponent(labelDiagnostico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -328,20 +328,25 @@ public class FrameTela extends javax.swing.JFrame {
 
     //GERA O DIAGNOSTICO COM BASE NAS COMBINACOES DEFINIDAS
     private void diagnostico_manual() {
-        if (rS1.isSelected() && rS9.isSelected() && rS5.isSelected()) {
-            textDiagnostico.setText("Resfriado Comum"); //D1
+        if (rS0.isSelected() && rS1.isSelected() && rS2.isSelected()
+                && rS3.isSelected() && rS4.isSelected() && rS5.isSelected()
+                && rS6.isSelected() && rS7.isSelected() && rS8.isSelected()
+                && rS9.isSelected()) {
+            textDiagnostico.setText("Procure um medico urgentemente");
         } else if (rS0.isSelected() && rS5.isSelected() && rS2.isSelected()) {
-            textDiagnostico.setText("Enxaqueca"); //D2
+            textDiagnostico.setText("Enxaqueca");
         } else if (rS6.isSelected() && rS3.isSelected() && rS8.isSelected()) {
-            textDiagnostico.setText("Gastroenterite"); //D3
+            textDiagnostico.setText("Gastroenterite");
         } else if (rS9.isSelected() && rS5.isSelected() && rS2.isSelected()
                 && rS6.isSelected() && rS3.isSelected()) {
-            textDiagnostico.setText("Infecção Respiratória"); //D4
+            textDiagnostico.setText("Infecção Respiratória");
         } else if (rS0.isSelected() && rS1.isSelected()
                 && rS5.isSelected() && rS6.isSelected()) {
             textDiagnostico.setText("Covid"); //D5
+        } else if (rS1.isSelected() && rS9.isSelected() && rS5.isSelected()) {
+            textDiagnostico.setText("Resfriado Comum");
         } else {
-            textDiagnostico.setText("Indisponivel"); //SEM DIAGNOSTICO
+            textDiagnostico.setText("Indisponivel");
         }
     }
 
@@ -435,7 +440,7 @@ public class FrameTela extends javax.swing.JFrame {
             btnLimpar.setEnabled(false);
             btnGerar.setEnabled(false);
             btnSave.setEnabled(true);
-            btnApriori.setEnabled(true);
+            btnWisard.setEnabled(false);
         } else {
             labelInforme.setForeground(Color.red);
         }
@@ -449,7 +454,7 @@ public class FrameTela extends javax.swing.JFrame {
         btnNovo.setEnabled(false);
         btnGerar.setEnabled(true);
         btnSave.setEnabled(false);
-        btnApriori.setEnabled(false);
+        btnWisard.setEnabled(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -536,18 +541,43 @@ public class FrameTela extends javax.swing.JFrame {
         fieldInforme.setText("");
     }//GEN-LAST:event_fieldInformeMouseClicked
 
-    private void btnAprioriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprioriActionPerformed
+    private void btnWisardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWisardActionPerformed
+        try {
+            String[] sintomasSelecionados = obterSintomasSelecionados();
+
+            Socket socket = new Socket("localhost", 12345);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+
+            oos.writeObject("wisard");
+            oos.writeObject(sintomasSelecionados);
+
+            String response = (String) ois.readObject();
+            textDiagnostico.setText(response);
+
+            oos.close();
+            ois.close();
+            socket.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         
-    }//GEN-LAST:event_btnAprioriActionPerformed
+        btnWisard.setEnabled(false);
+        btnGerar.setEnabled(false);
+        btnLimpar.setEnabled(false);
+        btnNovo.setEnabled(true);
+        btnCasos.setEnabled(true);
+        btnSave.setEnabled(true);
+    }//GEN-LAST:event_btnWisardActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnApriori;
     private javax.swing.JButton btnCasos;
     private javax.swing.JButton btnGerar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesq;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnWisard;
     private javax.swing.JTextField fieldInforme;
     private javax.swing.JLabel labelDiagnostico;
     private javax.swing.JLabel labelInforme;

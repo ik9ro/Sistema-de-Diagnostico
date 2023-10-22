@@ -3,7 +3,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Servidor {
@@ -64,7 +66,45 @@ public class Servidor {
             oos.flush();
         }
 
-        //ALGORITMO APRIORI
+        //ALGORITMO WISARD
+        private static String wisard_diagnostico(String[] sintomas) {
+            List<String> conjuntoSintomas = Arrays.asList(sintomas);
+            String diagnostico = "";
+
+            Map<List<String>, String> regrasDiagnostico = new HashMap<>();
+            //regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre", "Vômito", "Diarreia", "Erupção cutânea", "Dor de garganta", "Náusea", "Dor abdominal", "Fadiga", "Tosse"), "Procure um médico urgentemente");
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre"), "Resfriado Comum");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea", "Diarreia"), "Envenenamento Alimentar");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Dor de garganta", "Vômito"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Náusea", "Diarreia", "Fadiga"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre", "Dor de garganta"), "Amigdalite");
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre", "Fadiga"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Erupção cutânea", "Febre"), "Sarampo");
+            regrasDiagnostico.put(Arrays.asList("Dor abdominal", "Náusea", "Diarreia"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea"), "Enxaqueca");
+
+            int maxMatches = 0;
+            for (Map.Entry<List<String>, String> entry : regrasDiagnostico.entrySet()) {
+                List<String> regraSintomas = entry.getKey();
+                int matches = 0;
+                for (String sintoma : conjuntoSintomas) {
+                    if (regraSintomas.contains(sintoma)) {
+                        matches++;
+                    }
+                }
+                if (matches > maxMatches) {
+                    maxMatches = matches;
+                    diagnostico = entry.getValue();
+                }
+            }
+
+            if (maxMatches == 0) {
+                diagnostico = "Indisponivel";
+            }
+
+            return diagnostico;
+        }
 
         @Override
         public void run() {
@@ -85,8 +125,15 @@ public class Servidor {
                             lista_pacientes_por_diagnostico(oos, tipoDiagnostico);
                             oos.flush();
                             break;
-                        } else if (command.equals("apriori")) {
-                            
+                        } else if (command.equals("wisard")) {
+                            try {
+                                String[] sintomas = (String[]) ois.readObject();
+                                String diagnostico = wisard_diagnostico(sintomas);
+                                oos.writeObject(diagnostico);
+                                oos.flush();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         }
                     } else if (inputObject instanceof Paciente) {
                         Paciente patient = (Paciente) inputObject;
