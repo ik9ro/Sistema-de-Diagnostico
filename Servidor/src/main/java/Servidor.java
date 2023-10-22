@@ -157,7 +157,7 @@ public class Servidor {
                             lista_pacientes_por_diagnostico(oos, tipoDiagnostico);
                             oos.flush();
                             break;
-                        } else if (command.equals("wisard")) {
+                        } else if (command.equals("wisard")) { //GERA DIAGNOSTICO COM BASE NO WISARD
                             try {
                                 String[] sintomas = (String[]) ois.readObject();
                                 String diagnostico = wisard_diagnostico(sintomas);
