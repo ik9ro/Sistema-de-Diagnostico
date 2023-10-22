@@ -70,15 +70,48 @@ public class Servidor {
         private static String wisard_diagnostico(String[] sintomas) {
             List<String> conjuntoSintomas = Arrays.asList(sintomas);
             String diagnostico = "";
+            
+            if (conjuntoSintomas.size() == 10) {
+                diagnostico = "Procure um medico urgentemente";
+                return diagnostico;
+            }
 
+            //TREINAMENTO
             Map<List<String>, String> regrasDiagnostico = new HashMap<>();
-            //regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre", "Vômito", "Diarreia", "Erupção cutânea", "Dor de garganta", "Náusea", "Dor abdominal", "Fadiga", "Tosse"), "Procure um médico urgentemente");
             regrasDiagnostico.put(Arrays.asList("Tosse", "Febre"), "Gripe");
             regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre"), "Resfriado Comum");
             regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea", "Diarreia"), "Envenenamento Alimentar");
             regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Dor de garganta", "Vômito"), "Enxaqueca");
             regrasDiagnostico.put(Arrays.asList("Náusea", "Diarreia", "Fadiga"), "Gastroenterite");
-            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre", "Dor de garganta"), "Amigdalite");
+            regrasDiagnostico.put(Arrays.asList("Febre", "Dor de garganta"), "Amigdalite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Fadiga"), "Cansaço");
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre", "Fadiga"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Erupção cutânea", "Febre"), "Sarampo");
+            regrasDiagnostico.put(Arrays.asList("Dor abdominal", "Náusea", "Diarreia"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea"), "Enxaqueca");
+            
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre"), "Resfriado Comum");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea", "Diarreia"), "Envenenamento Alimentar");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Dor de garganta", "Vômito"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Náusea", "Diarreia", "Fadiga"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Febre", "Dor de garganta"), "Amigdalite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Fadiga"), "Cansaço");
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre", "Fadiga"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Erupção cutânea", "Febre"), "Sarampo");
+            regrasDiagnostico.put(Arrays.asList("Dor abdominal", "Náusea", "Diarreia"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea"), "Enxaqueca");
+            
+            regrasDiagnostico.put(Arrays.asList("Tosse", "Febre"), "Gripe");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Febre"), "Resfriado Comum");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Náusea", "Diarreia"), "Envenenamento Alimentar");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça", "Dor de garganta", "Vômito"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Náusea", "Diarreia", "Fadiga"), "Gastroenterite");
+            regrasDiagnostico.put(Arrays.asList("Febre", "Dor de garganta"), "Amigdalite");
+            regrasDiagnostico.put(Arrays.asList("Dor de cabeça"), "Enxaqueca");
+            regrasDiagnostico.put(Arrays.asList("Fadiga"), "Cansaço");
             regrasDiagnostico.put(Arrays.asList("Tosse", "Febre", "Fadiga"), "Gripe");
             regrasDiagnostico.put(Arrays.asList("Erupção cutânea", "Febre"), "Sarampo");
             regrasDiagnostico.put(Arrays.asList("Dor abdominal", "Náusea", "Diarreia"), "Gastroenterite");
